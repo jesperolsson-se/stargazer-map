@@ -3,7 +3,7 @@ library(ggmap)
 
 locations = read.csv(file = "./locations.csv", header = TRUE);
 
-svg("example-plot.svg")
+svg("/output/stargazer-map.svg")
 
 map_world <- map_data("world")
 ggplot() +

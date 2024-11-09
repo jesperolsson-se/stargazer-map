@@ -15,6 +15,17 @@ for i in $(seq 1 $pages); do
   | jq .location \
   | xargs -I{} sh -c '{ ./locationToCoordinates.sh {} >> locations.csv; sleep 2; }'
 done
-
-Rscript script.R
 ``` 
+
+Build and run the container.
+
+```bash
+docker build -t stargazer-map .
+
+docker run -d --rm \
+-v "$(pwd)/locations.csv":/locations.csv \
+-v "$(pwd)/output":/output \
+stargazer-map
+```
+
+That's it! You'll find the result in `output/stargazer-map.svg`.
